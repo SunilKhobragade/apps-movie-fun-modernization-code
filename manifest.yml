@@ -1,0 +1,15 @@
+---
+applications:
+- name: moviefun-multiplejars
+  random-route: true
+  memory: 1GB
+  instances: 1
+  path: applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SNAPSHOT.war
+services:
+- mysql-gradlization
+- moviefun-s3
+env:
+  S3_ENDPOINTURL: http://s3.amazonaws.com
+  S3_ACCESSKEY: AKIAJAEINCQHERFJLNQQ
+  S3_SECRETKEY: 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
+  S3_BUCKETNAME: cf-1defe0cf-6a41-4999-bb4f-3f1207b2c30b
