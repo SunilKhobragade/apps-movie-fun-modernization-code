@@ -1,0 +1,19 @@
+---
+memory: 1G
+instances: 1
+applications:
+- name: album-service-sk
+  path: applications/album-service/build/libs/album-service-1.1.0-SNAPSHOT.jar
+  services:
+  - album-database
+  - moviefun-s3
+- name: movie-service-sk
+  path: applications/movie-service/build/libs/movie-service-1.1.0-SNAPSHOT.jar
+  services:
+  - movie-database
+- name: movie-fun-app-sk
+  host: movie-fun-app-sk
+  path: applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SNAPSHOT.war
+  env:
+    ALBUMS_URL: http://album-service-sk.apps.cumuluslabs.io/albums
+    MOVIES_URL: http://movie-service-sk.apps.cumuluslabs.io/movies
