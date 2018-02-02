@@ -5,17 +5,35 @@ services:
 - movie-fun-sso
 - movie-fun-registry
 applications:
-- name: album-service
+- name: album-service-configserver
+  routes:
+    - route: album-service-configserver.apps.cumuluslabs.io
   path: applications/album-service/build/libs/album-service-1.1.0-SNAPSHOT.jar
   services:
-  - album-database
+  - album-database-migrate
   env:
     GRANT_TYPE: client_credentials
-- name: movie-service
+    S3_ENDPOINTURL: http://s3.amazonaws.com
+    S3_ACCESSKEY: AKIAJZQFBY46XGW2U3HA
+    S3_SECRETKEY: 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
+    S3_BUCKETNAME: cf-1defe0cf-6a41-4999-bb4f-3f1207b2c30b
+- name: movie-service-configserver
+  routes:
+    - route: movie-service-configserver.apps.cumuluslabs.io
   path: applications/movie-service/build/libs/movie-service-1.1.0-SNAPSHOT.jar
   services:
-  - movie-database
+  - movie-database-migrate
   env:
     GRANT_TYPE: client_credentials
-- name: movie-fun-app
+- name: movie-fun-app-configserver
+  routes:
+    - route: movie-fun-app-configserver.apps.cumuluslabs.io
   path: applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SNAPSHOT.war
+  services:
+    - movie-fun-configserver
+  env:
+    S3_ENDPOINTURL: http://s3.amazonaws.com
+    S3_ACCESSKEY: AKIAJZQFBY46XGW2U3HA
+    S3_SECRETKEY: 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
+    S3_BUCKETNAME: cf-1defe0cf-6a41-4999-bb4f-3f1207b2c30b
+

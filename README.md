@@ -50,3 +50,8 @@ Run migrations on the PCF environment which you're logged in to with
 ```bash
 CF_MIGRATE=true ./gradlew cfMigrate
 ```
+
+
+creating configserver 
+
+cf create-service p-config-server standard config-server -c ./config-server.json
