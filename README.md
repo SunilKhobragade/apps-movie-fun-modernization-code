@@ -50,3 +50,12 @@ Run migrations on the PCF environment which you're logged in to with
 ```bash
 CF_MIGRATE=true ./gradlew cfMigrate
 ```
+
+
+To see the circuit breaker working by defaulting to default method give different bucket name 
+
+env:
+      S3_ENDPOINTURL: http://s3.amazonaws.com
+      S3_ACCESSKEY: AKIAJZQFBY46XGW2U3HA
+      S3_SECRETKEY: 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
+      S3_BUCKETNAME: cf-1defe0cf-6a41-4999-bb4f-3f1207b2c30bsunil ( diffrent bucket name to check the circuit breaker defaults to fallback method)
